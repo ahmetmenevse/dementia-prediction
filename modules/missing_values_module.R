@@ -37,36 +37,39 @@ missingValuesUI <- function(id) {
   )
 }
 
-missingValuesServer <- function(id, data) {
+missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
-    missing_summary <- data.frame(
-      Variable = names(data),
-      Missing_Count = sapply(data, function(x) sum(is.na(x))),
-      Missing_Percent = sapply(data, function(x) mean(is.na(x))) * 100
-    )
+    data_imputed <- reactiveVal(NULL)  # Initialize with the initial data
+    
+    missing_summary <- reactive({
+      data_df <- data()
+      data.frame(
+        Variable = names(data_df),
+        Missing_Count = sapply(data_df, function(x) sum(is.na(x))),
+        Missing_Percent = sapply(data_df, function(x) mean(is.na(x))) * 100
+      )
+    })
     
     output$missing_summary <- renderTable({
-      missing_summary
+      missing_summary()
     })
     
     observeEvent(input$impute, {
+      req(input$cont_method, input$cat_method)
+      
+      data_copy <- isolate(data())
+      
       cont_method <- input$cont_method
       cat_method <- input$cat_method
       
-      if (is.null(cont_method) || is.null(cat_method)) {
-        return(NULL)
-      }
-      
-      data_copy <- data
-      
       imputation_details <- list()
       
-      missing_cont_vars <- continuous_vars[sapply(data[continuous_vars], function(x) any(is.na(x)))]
-      missing_cat_vars <- categorical_vars[sapply(data[categorical_vars], function(x) any(is.na(x)))]
+      missing_cont_vars <- continuous_vars[sapply(data_copy[continuous_vars], function(x) any(is.na(x)))]
+      missing_cat_vars <- categorical_vars[sapply(data_copy[categorical_vars], function(x) any(is.na(x)))]
       
-      if (length(missing_cont_vars) > 0 && !is.null(cont_method)) {
+      if (length(missing_cont_vars) > 0) {
         if (cont_method == 'Mean') {
           for (var in missing_cont_vars) {
             mean_value <- mean(data_copy[[var]], na.rm = TRUE)
@@ -90,8 +93,8 @@ missingValuesServer <- function(id, data) {
           data_copy <- data_copy[complete.cases(data_copy[, missing_cont_vars]), ]
         }
       }
-  
-      if (length(missing_cat_vars) > 0 && !is.null(cat_method)) {
+      
+      if (length(missing_cat_vars) > 0) {
         if (cat_method == 'Mode') {
           for (var in missing_cat_vars) {
             mode_value <- names(sort(table(data_copy[[var]]), decreasing = TRUE))[1]
@@ -129,21 +132,25 @@ missingValuesServer <- function(id, data) {
       output$imputation_details <- renderTable({
         imputation_details_df
       })
-  
+      
       imputed_vars <- c(missing_cont_vars, missing_cat_vars)
       comparison_summary <- data.frame(
         Variable = imputed_vars,
-        Missing_Before = sapply(data[imputed_vars], function(x) sum(is.na(x))),
+        Missing_Before = sapply(data()[imputed_vars], function(x) sum(is.na(x))),
         Missing_After = sapply(data_copy[imputed_vars], function(x) sum(is.na(x))),
-        Mean_Before = sapply(data[imputed_vars], function(x) if(is.numeric(x)) mean(x, na.rm = TRUE) else NA),
+        Mean_Before = sapply(data()[imputed_vars], function(x) if(is.numeric(x)) mean(x, na.rm = TRUE) else NA),
         Mean_After = sapply(data_copy[imputed_vars], function(x) if(is.numeric(x)) mean(x, na.rm = TRUE) else NA),
-        Median_Before = sapply(data[imputed_vars], function(x) if(is.numeric(x)) median(x, na.rm = TRUE) else NA),
+        Median_Before = sapply(data()[imputed_vars], function(x) if(is.numeric(x)) median(x, na.rm = TRUE) else NA),
         Median_After = sapply(data_copy[imputed_vars], function(x) if(is.numeric(x)) median(x, na.rm = TRUE) else NA)
       )
       
       output$comparison_summary <- renderTable({
         comparison_summary
       })
+      
+      data_imputed(data_copy)  # Güncellenmiş veriyi sakla
     })
+    
+    return(data_imputed)  # Güncellenmiş veriyi döndür
   })
 }
