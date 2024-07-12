@@ -41,7 +41,7 @@ missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
     
-    data_imputed <- reactiveVal(NULL)  # Initialize with the initial data
+    data_imputed <- reactiveVal(NULL)  
     
     missing_summary <- reactive({
       data_df <- data()
@@ -148,9 +148,9 @@ missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
         comparison_summary
       })
       
-      data_imputed(data_copy)  # Güncellenmiş veriyi sakla
+      data_imputed(data_copy) 
     })
     
-    return(data_imputed)  # Güncellenmiş veriyi döndür
+    return(data_imputed)  
   })
 }

@@ -8,6 +8,7 @@ dataInfoUI <- function(id) {
           p("The dataset, sourced from a mobile healthcare service operated by non-governmental organizations managing elderly care centers in Hong Kong between 2008-2018, contains various demographic, health, and quality of life information for elderly individuals. 
           It includes 2299 observations and 12 variables, covering age, gender, height, weight, education level, financial status, and nutrition assessment scores."),
           hr(),
+          h4('Variables'),
           tags$ul(
             tags$li(tags$b("Age:"), " Age of individuals between 51-104."),
             tags$li(tags$b("Gender:"), " Gender of the individuals. (0: Female, 1: Male)."),

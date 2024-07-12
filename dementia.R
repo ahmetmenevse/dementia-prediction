@@ -7,6 +7,7 @@ library(tidyverse)
 str(data)
 head(data)
 names(data[,-1])
+
 continuous_vars <- c("Age", "Body_Height", "Body_Weight", "GDS", "MNAa_total", "MNAb_total", "Education_ID", "Financial_status")
 categorical_vars <- c("MMSE_class_binary", "Gender", "Independent_or_depend_on_family", "Marital_status_ID")
 
@@ -163,7 +164,7 @@ ggroc(
       paste("Logistic regression, AUC", round(log_roc$auc, 3)),
       paste("Support vector machine, AUC", round(svm_roc$auc, 3))
     )
-) +
-labs(col = "Model") +
-theme_classic() +
-theme(legend.position = c(.8,.2))
+  ) +
+  labs(col = "Model") +
+  theme_classic() +
+  theme(legend.position = c(.8,.2))
