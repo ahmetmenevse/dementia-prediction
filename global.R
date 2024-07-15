@@ -2,14 +2,18 @@ library(shiny)
 library(shinythemes)
 library(dplyr)
 library(VIM)
+library(randomForest)
+library(e1071)
+library(pROC)
+library(ggplot2)
+library(caret)
+
 
 data <- read.csv('dataset ICT583 2024S1.csv', stringsAsFactors = FALSE)
 
-if (is.na(names(data)[1]) || names(data)[1] == "") {
-  names(data)[1] <- "ID"
-}
+data <- data[ , !names(data) %in% "X"]
 
-variables <- names(data)[-1]
+variables <- names(data)
 
 categorical_vars <- c('Gender', 'Education_ID', 'Financial_status', 'Independent_or_depend_on_family', 'Marital_status_ID', 'MMSE_class_binary')
 continuous_vars <- setdiff(variables, categorical_vars)

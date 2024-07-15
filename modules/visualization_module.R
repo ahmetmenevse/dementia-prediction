@@ -88,7 +88,7 @@ visualizationServer <- function(id, data, categorical_vars, continuous_vars, cat
               axis.title = element_text(size = 12, face = "bold"), 
               legend.title = element_text(size = 12, face = "bold"), 
               legend.text = element_text(size = 10),  
-              plot.margin = margin(10, 10, 10, 10)  
+              plot.margin = ggplot2::margin(10, 10, 10, 10)
             ) +
             guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
             geom_text(stat = 'count', aes(label = ..count..), vjust = -0.5, size = 3) 

@@ -138,5 +138,7 @@ edaServer <- function(id, data, category_labels) {
         })
       }
     })
+    
+    return(partitioned_data)  # Return the partitioned data for use in modeling
   })
 }
