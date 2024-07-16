@@ -124,6 +124,13 @@ missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
         }
       }
       
+      #update categorical variables numeric for corelation
+      for (var in categorical_vars) {
+        if (!is.numeric(data_copy[[var]])) {
+          data_copy[[var]] <- as.numeric(data_copy[[var]])
+        }
+      }
+      
       imputation_details_df <- data.frame(
         Variable = names(imputation_details),
         Method = unlist(imputation_details)
@@ -147,10 +154,8 @@ missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
       output$comparison_summary <- renderTable({
         comparison_summary
       })
-      
       data_imputed(data_copy) 
     })
-    
     return(data_imputed)  
   })
 }
