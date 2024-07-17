@@ -7,7 +7,7 @@ source("modules/data_table_module.R")
 
 ui <- navbarPage(
   theme = shinytheme("cerulean"),
-  "Dementia Analysis",
+  "Dementia Risk Prediction",
   
   tabPanel("1-Dataset Information",
            dataInfoUI("dataInfo")
