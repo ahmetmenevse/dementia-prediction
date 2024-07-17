@@ -1,7 +1,6 @@
 library(shiny)
 library(shinythemes)
 library(dplyr)
-library(VIM)
 library(randomForest)
 library(e1071)
 library(pROC)
