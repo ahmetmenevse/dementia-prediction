@@ -4,7 +4,9 @@ library(DT)
 dataTableUI <- function(id) {
   ns <- NS(id)
   tagList(
-    DTOutput(ns("table"))
+    DTOutput(ns("table")),
+    hr(),
+    p("For next step: Please proceed to the 'Missing Values' tab above to explore the dataset in detail.")
   )
 }
 

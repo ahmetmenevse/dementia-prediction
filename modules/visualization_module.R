@@ -21,7 +21,9 @@ visualizationUI <- function(id) {
     ),
     fluidRow(
       uiOutput(ns("continuous_plots_ui"))
-    )
+    ),
+    hr(),
+    p("For next step: Please proceed to the 'Exploratory Data Analysis' tab above to explore the dataset in detail.")
   )
 }
 

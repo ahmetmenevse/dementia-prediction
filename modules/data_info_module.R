@@ -8,6 +8,9 @@ dataInfoUI <- function(id) {
           p("The dataset, sourced from a mobile healthcare service operated by non-governmental organizations managing elderly care centers in Hong Kong between 2008-2018, contains various demographic, health, and quality of life information for elderly individuals. 
           It includes 2299 observations and 12 variables, covering age, gender, height, weight, education level, financial status, and nutrition assessment scores."),
           hr(),
+          p("Note: This dataset is a subset of the original data used in a comprehensive study. The original research included more variables and employed different methods to analyze the data. 
+            For detailed information and methodologies used in the original study, please refer to the published research article. ", tags$a(href = "https://medinform.jmir.org/2020/8/e19870/", "More Info")),
+          hr(),
           h4('Variables'),
           tags$ul(
             tags$li(tags$b("Age:"), " Age of individuals between 51-104."),
@@ -38,6 +41,8 @@ dataInfoUI <- function(id) {
               tags$li(tags$b(var))
             })
           ),
+          hr(),
+          p("For next step: Please proceed to the 'Data Table' tab above to explore the dataset in detail.")
         ),
         mainPanel(
           h3('Variable Summaries'),

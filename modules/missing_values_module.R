@@ -1,3 +1,4 @@
+
 library(shiny)
 library(shinythemes)
 library(dplyr)
@@ -23,7 +24,9 @@ missingValuesUI <- function(id) {
         h4("Categorical Variables"), 
         p("Select a method to impute missing values for categorical variables."),
         radioButtons(ns('cat_method'), 'Select Method', choices = c('Mode', 'KNN', 'Hot Deck', 'Delete')),
-        actionButton(ns('impute'), 'Impute Missing Values')
+        actionButton(ns('impute'), 'Impute Missing Values'),
+        hr(),
+        uiOutput(ns("next_step_message")),
       ),
       mainPanel(
         h3("Missing Values Summary"),
@@ -155,7 +158,14 @@ missingValuesServer <- function(id, data, categorical_vars, continuous_vars) {
         comparison_summary
       })
       data_imputed(data_copy) 
+      
+      output$next_step_message <- renderUI({
+        tagList(
+          p("For the next step: Please proceed to the 'Visualization' tab above to explore the dataset in detail.")
+        )
+      })
     })
+    
     return(data_imputed)  
   })
 }

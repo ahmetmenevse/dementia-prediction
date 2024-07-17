@@ -4,7 +4,10 @@ edaUI <- function(id) {
     fluidPage(
       sidebarLayout(
         sidebarPanel(
-          h3("EDA Module"),
+          h3("Exploratory Data Analysis (EDA)"),
+          br(),
+          p("Correlation analysis helps identify the strength and direction of the linear relationship between variables. It is useful for understanding how variables interact with each other."),
+          br(),
           actionButton(ns("correlation_btn"), "Calculate Correlation"),
           br(),
           h4("Scaling and Partitioning"),
@@ -118,7 +121,7 @@ edaServer <- function(id, data, category_labels) {
       if (is.null(df)) {
         df <- data()
       }
-      set.seed(1)  # For reproducibility
+      set.seed(123)  # For reproducibility
       train_index <- sample(seq_len(nrow(df)), size = input$train_split * nrow(df))
       train_data <- df[train_index, ]
       test_data <- df[-train_index, ]
@@ -132,8 +135,8 @@ edaServer <- function(id, data, category_labels) {
       if (!is.null(partitioned_data())) {
         output$next_steps <- renderUI({
           tagList(
-            h4("Proceed to Modeling"),
-            p("You can now proceed to the modeling phase with the partitioned and scaled data.")
+            hr(),
+            p("For next step: Please proceed to the 'Modeling' tab above to explore the dataset in detail.")
           )
         })
       }

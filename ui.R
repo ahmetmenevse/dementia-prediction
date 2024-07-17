@@ -7,28 +7,28 @@ source("modules/data_table_module.R")
 
 ui <- navbarPage(
   theme = shinytheme("cerulean"),
-  "Dataset Analysis",
+  "Dementia Analysis",
   
-  tabPanel("Dataset Information",
+  tabPanel("1-Dataset Information",
            dataInfoUI("dataInfo")
   ),
   
-  tabPanel("Data Table",
+  tabPanel("2-Data Table",
            dataTableUI("dataTable")
   ),
   
-  tabPanel("Missing Values",
+  tabPanel("3-Missing Values",
            missingValuesUI("missingValues")
   ),
   
-  tabPanel('Visualization',
+  tabPanel('4-Visualization',
            visualizationUI('visualization')
   ),
   
-  tabPanel("Exploratory Data Analysis",
+  tabPanel("5-Exploratory Data Analysis",
            edaUI("eda")
   ),
-  tabPanel("Modeling",
+  tabPanel("6-Modeling",
            modelingUI("modeling")
   )
 )
