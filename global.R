@@ -9,6 +9,9 @@ library(caret)
 library(VIM)
 library(DT)
 
+required_packages <- c('shiny', 'dplyr', 'randomForest', 'e1071', 'pROC', 'ggplot2', 'caret', 'shinythemes', 'VIM', 'DT')
+lapply(required_packages, library, character.only = TRUE)
+
 data <- read.csv('dataset ICT583 2024S1.csv', stringsAsFactors = FALSE)
 
 data <- data[ , !names(data) %in% "X"]
