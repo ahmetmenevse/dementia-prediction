@@ -1,10 +1,3 @@
-library(shiny)
-library(randomForest)
-library(e1071)
-library(pROC)
-library(ggplot2)
-library(caret)
-
 # UI for the Modeling Module
 modelingUI <- function(id) {
   ns <- NS(id)

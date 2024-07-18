@@ -7,6 +7,7 @@ library(pROC)
 library(ggplot2)
 library(caret)
 library(VIM)
+library(DT)
 
 data <- read.csv('dataset ICT583 2024S1.csv', stringsAsFactors = FALSE)
 

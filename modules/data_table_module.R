@@ -1,6 +1,3 @@
-library(shiny)
-library(DT)
-
 dataTableUI <- function(id) {
   ns <- NS(id)
   tagList(
