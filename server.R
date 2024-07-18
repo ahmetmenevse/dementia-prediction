@@ -1,4 +1,5 @@
 source("global.R")
+source("ui.R")
 source("modules/data_info_module.R")
 source("modules/missing_values_module.R")
 source("modules/visualization_module.R")
@@ -21,3 +22,4 @@ server <- function(input, output, session) {
   
   modelingServer("modeling", data = partitioned_data, category_labels = category_labels, continuous_vars = continuous_vars)
 }
+

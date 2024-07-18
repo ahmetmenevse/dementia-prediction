@@ -93,7 +93,7 @@ visualizationServer <- function(id, data, categorical_vars, continuous_vars, cat
               plot.margin = ggplot2::margin(10, 10, 10, 10)
             ) +
             guides(fill = guide_legend(nrow = 2, byrow = TRUE)) +
-            geom_text(stat = 'count', aes(label = ..count..), vjust = -0.5, size = 3) 
+            geom_text(stat = 'count', aes(label = after_stat(count)), vjust = -0.5, size = 3) 
         })
       })
       

@@ -1,0 +1,1 @@
+web: R -e "shiny::runApp('app.R', port = Sys.getenv('PORT'))"
