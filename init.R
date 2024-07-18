@@ -2,7 +2,7 @@ my_packages = c('shiny', 'dplyr', 'randomForest', 'e1071', 'pROC', 'ggplot2', 'c
 
 install_if_missing = function(p) {
   if (!p %in% rownames(installed.packages())) {
-    install.packages(p, repos='http://cran.rstudio.com/')
+    install.packages(p, repos='https://cloud.r-project.org/')
   }
 }
 
@@ -14,12 +14,13 @@ install_package_with_retry = function(p) {
     error = function(e) {
       message(paste("Error installing package:", p))
       message("Retrying...")
-      install.packages(p, repos='http://cran.rstudio.com/')
+      install.packages(p, repos='https://cloud.r-project.org/')
     }
   )
 }
 
-# Önce Matrix paketini güncelleyin
-install.packages("Matrix", repos='http://cran.rstudio.com/')
+# Update Matrix package first
+install.packages("Matrix", repos='https://cloud.r-project.org/')
 
+# Install all packages
 invisible(sapply(my_packages, install_package_with_retry))
