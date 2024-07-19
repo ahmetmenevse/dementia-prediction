@@ -1,4 +1,3 @@
-# UI for the Modeling Module
 modelingUI <- function(id) {
   ns <- NS(id)
   tagList(

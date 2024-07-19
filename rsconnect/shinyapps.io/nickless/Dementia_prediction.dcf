@@ -1,0 +1,13 @@
+name: Dementia_prediction
+title: Dementia_prediction
+username: nickless
+account: nickless
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12333776
+bundleId: 8878750
+url: https://nickless.shinyapps.io/Dementia_prediction/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: aptfile|Procfile|README.md

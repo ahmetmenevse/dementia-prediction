@@ -121,7 +121,7 @@ edaServer <- function(id, data, category_labels) {
       if (is.null(df)) {
         df <- data()
       }
-      set.seed(123)  # For reproducibility
+      set.seed(123)
       train_index <- sample(seq_len(nrow(df)), size = input$train_split * nrow(df))
       train_data <- df[train_index, ]
       test_data <- df[-train_index, ]

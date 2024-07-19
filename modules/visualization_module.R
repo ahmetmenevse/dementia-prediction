@@ -1,7 +1,3 @@
-library(shiny)
-library(ggplot2)
-library(dplyr)
-
 # UI for the Visualization Module
 visualizationUI <- function(id) {
   ns <- NS(id)
