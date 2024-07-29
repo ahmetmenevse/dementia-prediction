@@ -13,7 +13,20 @@ You can access the deployed application [here](https://nickless.shinyapps.io/Dem
 The dataset is sourced from a mobile healthcare service operated by non-governmental organizations managing elderly care centers in Hong Kong between 2008-2018. It includes information on various demographics, health, and quality of life for elderly individuals.
 
 - **Observations**: 2,299
-- **Variables**: 12 (including age, gender, height, weight, education level, financial status, and nutrition assessment scores)
+- **Variables**: 12, covering:
+  - Age
+  - Gender
+  - Body_Height
+  - Body_Weight
+  - Education_ID
+  - Financial_status
+  - GDS: (Geriatric Depression Scale)
+  - Independent_or_depend_on_family
+  - Marital_status_ID
+  - MNAa_total (Mini Nutritional Assessment part A)
+  - MNAb_total (Mini Nutritional Assessment part B)
+  - MMSE_class_binary (Mini Mental State Exam class, indicating potential dementia risk)
+
   
 Note: This dataset is a subset of the original data used in a comprehensive study. For detailed information and methodologies, refer to the published research [article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7490674/)
 
